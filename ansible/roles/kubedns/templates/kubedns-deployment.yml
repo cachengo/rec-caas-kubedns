@@ -91,7 +91,7 @@ spec:
         command:
         - /usr/bin/kube-dns
         args:
-        - --domain=nokia.net.
+        - --domain={{ caas.dns_domain }}.
         - --dns-port=10053
         - --config-dir=/etc/dns_config
         - --v=2
@@ -145,7 +145,7 @@ spec:
         - --bind-interfaces
         - --dns-forward-max=1000
         - --cache-size=10000
-        - --server=/nokia.net/127.0.0.1#10053
+        - --server=/{{ caas.dns_domain }}/127.0.0.1#10053
         # see: https://github.com/kubernetes/kubernetes/issues/29055 for details
         resources:
           requests:
