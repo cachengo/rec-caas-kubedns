@@ -42,6 +42,9 @@ spec:
       - key: "CriticalAddonsOnly"
         operator: "Exists"
       volumes:
+      - name: time-mount
+        hostPath:
+          path: /etc/localtime
       - name: secret
         hostPath:
           path: /etc/kubernetes/ssl
@@ -106,6 +109,9 @@ spec:
           name: metrics
           protocol: TCP
         volumeMounts:
+        - name: time-mount
+          mountPath: /etc/localtime
+          readOnly: true
         - name: secret
           mountPath: /etc/kubernetes/ssl
           readOnly: true
@@ -152,6 +158,9 @@ spec:
             cpu: 150m
             memory: 20Mi
         volumeMounts:
+        - name: time-mount
+          mountPath: /etc/localtime
+          readOnly: true
         - name: secret
           mountPath: /etc/kubernetes/ssl
           readOnly: true
