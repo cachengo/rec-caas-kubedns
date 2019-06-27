@@ -35,6 +35,7 @@ spec:
         scheduler.alpha.kubernetes.io/critical-pod: ''
         scheduler.alpha.kubernetes.io/tolerations: '[{"key":"CriticalAddonsOnly", "operator":"Exists"}]'
     spec:
+      priorityClassName: "system-cluster-critical"
       hostNetwork: true
       nodeSelector:
         nodetype: caas_master
@@ -73,7 +74,7 @@ spec:
           limits:
             memory: 170Mi
           requests:
-            cpu: 100m
+            cpu: 10m
             memory: 70Mi
         livenessProbe:
           tcpSocket:
@@ -108,6 +109,10 @@ spec:
         - containerPort: 10055
           name: metrics
           protocol: TCP
+        resources:
+          requests:
+            cpu: 10m
+            memory: 70Mi
         volumeMounts:
         - name: time-mount
           mountPath: /etc/localtime
