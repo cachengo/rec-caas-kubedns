@@ -78,7 +78,7 @@ spec:
             memory: 70Mi
         livenessProbe:
           tcpSocket:
-            port: 53
+            port: 10053
           initialDelaySeconds: 60
           timeoutSeconds: 5
           successThreshold: 1
