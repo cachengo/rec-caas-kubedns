@@ -33,9 +33,9 @@ RUN apk update \
 &&  mkdir -p $GOPATH/src/k8s.io/dns \
 &&  curl -fsSL -k https://github.com/kubernetes/dns/archive/${KUBEDNS_VERSION}.tar.gz | tar zx --strip-components=1 -C $GOPATH/src/k8s.io/dns \
 &&  cd $GOPATH/src/k8s.io/dns \
-&&  PKG=k8s.io/dns ARCH=amd64 VERSION=${KUBEDNS_VERSION} ./build/build.sh \
-&&  mv $GOPATH/bin/linux_amd64/kube-dns /usr/bin/kube-dns \
-&&  mv $GOPATH/bin/linux_amd64/dnsmasq-nanny /usr/bin/dnsmasq-nanny \
+&&  PKG=k8s.io/dns ARCH=arm64 VERSION=${KUBEDNS_VERSION} ./build/build.sh \
+&&  mv $GOPATH/bin/kube-dns /usr/bin/kube-dns \
+&&  mv $GOPATH/bin/dnsmasq-nanny /usr/bin/dnsmasq-nanny \
 &&  setcap 'cap_net_bind_service=+ep' /usr/sbin/dnsmasq \
 &&  apk del .build-deps \
 &&  rm -rf $GOPATH \
